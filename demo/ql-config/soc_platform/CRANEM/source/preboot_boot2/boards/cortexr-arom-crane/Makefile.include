@@ -1,0 +1,9 @@
+export CPU = cortexr
+
+export OFLAGS = -O binary
+export HEXFILE = $(ELFFILE:.elf=.bin)
+
+export INCLUDES += -I$(RIOTBOARD)/cortexr-arom-crane/libarom/include
+export INCLUDES += -I$(RIOTBOARD)/cortexr-arom-crane/sb_auth
+
+export BASELIBS += $(RIOTBOARD)/cortexr-arom-crane/libarom/libarom.a

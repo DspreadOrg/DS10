@@ -1,0 +1,50 @@
+[
+  {
+    "board": "crane",
+    "path": "2020.07.30",
+    "description": "Crane(G/M) A0 (ASR1603, ASR3603)",
+    "parameters": "AROM_VERSION=20200730"
+  },
+  {
+    "board": "crane",
+    "path": "2021.10.16",
+    "description": "CraneL A0 (ASR1606, ASR3602)",
+    "parameters": "AROM_VERSION=20211016"
+  },
+  {
+    "board": "crane",
+    "path": "2022.11.06",
+    "description": "CraneL(R/RH/S/G/B) A0 (ASR1602, ASR1605, ASR1607, ASR1608, ASR1609, ASR3607, ASR3608)",
+    "parameters": "AROM_VERSION=20221106"
+  },
+  {
+    "board": "crane",
+    "path": "2022.11.11",
+    "description": "CraneGT A1 (ASR3605)",
+    "parameters": "AROM_VERSION=20221111"
+  },
+  {
+    "board": "crane",
+    "path": "2022.08.08",
+    "description": "WatchI CR5 (ASR3660)",
+    "parameters": "AROM_VERSION=20220808"
+  },
+  {
+    "board": "cranew-mcu",
+    "path": "2022.07.28",
+    "description": "Watch(I/II) MCU (ASR3660, ASR3661)",
+    "parameters": "AROM_VERSION=20220728"
+  },
+  {
+    "board": "crane",
+    "path": "2023.09.09",
+    "description": "Fulmar CR5 (ASR3661)",
+    "parameters": "AROM_VERSION=20230909"
+  },
+  {
+    "board": "crane",
+    "path": "2024.04.30",
+    "description": "Lapwing CR5 (ASR3901)",
+    "parameters": "AROM_VERSION=20240430"
+  }
+]

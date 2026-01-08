@@ -1,0 +1,12 @@
+export CPU = crane
+
+export OFLAGS = -O binary
+export HEXFILE = $(ELFFILE:.elf=.bin)
+USEMODULE += libarom-common
+
+export INCLUDES += -I$(RIOTBOARD)/crane/libarom/include
+export INCLUDES += -I$(RIOTBOARD)/crane/sb_auth
+include $(RIOTBOARD)/libarom-common/Makefile.include
+
+export CFLAGS += -DPROJECT_CONF_PATH=\"project-conf.h\"
+export BASELIBS += $(RIOTBOARD)/crane/libarom/libarom-$(BOARD)-$(APPLICATION)-$(AROM_VERSION).a

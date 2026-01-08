@@ -1,0 +1,3 @@
+export CPU_ARCH = cortex-r5
+
+include $(RIOTMAKE)/arch/cortexr.inc.mk

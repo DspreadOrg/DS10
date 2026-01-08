@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "ql_fs.h": "c",
+        "ql_application.h": "c",
+        "httpcusr_api.h": "c",
+        "systemparam.h": "c",
+        "cstdint": "cpp",
+        "array": "cpp",
+        "string": "cpp",
+        "string_view": "cpp",
+        "fixaudio.h": "c"
+    }
+    "workbench.editor.wrapTabs": true,
+}

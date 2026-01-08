@@ -1,0 +1,141 @@
+{
+  "name": "CRANEL_QUEC_FLASH_LAYOUT_DS_8M_8M_OPEN",
+  "partitions": [
+        {
+          "name": "spi",
+          "format": "flash",
+          "vstart": "0x90000000",
+          "partitions": [
+              {
+              "name": "customer_backup_fs",
+              "format": "raw",
+              "size": "8192KiB"
+              }
+          ]
+      },
+    {
+      "name": "qspi",
+      "format": "flash",
+      "vstart": "0x80000000",
+      "partitions": [
+        {
+          "name": "bootloader",
+          "format": "ubi",
+          "size": "88KiB"
+        },
+        {
+          "name": "system",
+          "format": "part",
+          "size": "0",
+          "partitions": [
+            {
+              "name": "ptable",
+              "format": "raw",
+              "size": "4KiB"
+            },
+            {
+              "name": "fwcerts",
+              "format": "raw",
+              "size": "12KiB"
+            },
+            {
+              "name": "rd",
+              "format": "raw",
+              "size": "32KiB"
+            },
+            {
+              "name": "cp",
+              "format": "raw",
+              "size": "0"
+            },
+            {
+              "name": "dsp",
+              "format": "raw",
+              "size": "0"
+            },
+            {
+              "name": "rfbin",
+              "format": "raw",
+              "size": "0"
+            }
+          ]
+        },
+        {
+          "name": "reserved",
+          "format": "raw",
+          "size": "-1"
+        },
+    {
+      "name": "app_cert",
+      "format": "raw",
+      "size": "4KiB"
+    },
+        {
+          "name": "customer_app",
+          "format": "raw",
+      "size": "1024KiB"
+        },
+    {
+      "name": "ymzn_param",
+      "format": "raw",
+      "size": "128KiB"
+    },
+		{
+		  "name": "customer_fs",
+		  "format": "raw",
+      "size": "2048KiB"
+		},
+			{
+          "name": "fota_pkg",
+          "format": "raw",
+          "size": "64KiB"
+        },
+	        {
+          "name": "nvm",
+          "format": "raw",
+          "size": "384KiB"
+        },
+
+			{
+          "name": "erase_rd",
+          "format": "raw",
+          "size": "4KiB"
+        },
+        {
+          "name": "updater",
+          "format": "raw",
+          "size": "128KiB"
+        },
+	        {
+          "name": "fota_param",
+          "format": "raw",
+          "size": "12KiB"
+        },
+
+		{
+          "name": "quec_cfg",
+          "format": "raw",
+          "size": "32KiB"
+        },
+
+        {
+          "name": "factory",
+          "format": "part",
+          "size": "0",
+          "partitions": [
+            {
+              "name": "factory_a",
+              "format": "raw",
+              "size": "32KiB"
+            },
+            {
+              "name": "factory_b",
+              "format": "raw",
+              "size": "32KiB"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

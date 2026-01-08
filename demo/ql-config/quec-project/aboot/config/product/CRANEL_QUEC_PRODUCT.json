@@ -1,0 +1,449 @@
+{
+  "name": "CRANEL_QUEC_PRODUCT",
+  "product": "arom-tiny",
+  "version": "0.5",
+  "keyAlg": "rsa",
+  "hashAlg": "sha256",
+  "secureBoot": false,
+  "firmwareGenerator": {
+    "name": "crane",
+    "call-max-download-size": "60KiB",
+    "flash-max-download-size": "1MiB",
+    "use-lzma-compression": false
+  },
+  "fota": ["system"],
+  "variants": [
+    {
+      "name": "ASR1606_02MB",
+      "version-bootrom": "2021.10.16",
+      "template": "ASR1606_SINGLE_SIM_TEMPLATE",
+      "layout": "ASR1606_SINGLE_SIM_FLASH_LAYOUT",
+      "flashes": [
+        {
+          "name": "qspi",
+          "port": "QSPI",
+          "flash": "QSPI_NOR_2MB_B64KB_S4KB_P256"
+        }
+      ]
+    },    
+	{
+      "name": "QUEC_CRANEL_SS_02MB_OPEN",
+      "version-bootrom": "2021.10.16",
+      "template": "CRANEL_QUEC_TEMPLATE_SS_02M_OPEN",
+      "layout": "CRANEL_QUEC_FLASH_LAYOUT_SS_02M_OPEN",
+      "flashes": [
+        {
+          "name": "qspi",
+          "port": "QSPI",
+          "flash": "QSPI_NOR_2MB_B64KB_S4KB_P256"
+        }
+      ]
+    },
+    {
+      "name": "QUEC_CRANEL_SS_02MB+02M_OPEN",
+      "version-bootrom": "2021.10.16",
+      "template": "CRANEL_QUEC_TEMPLATE_SS_02M+02M_OPEN",
+      "layout": "CRANEL_QUEC_FLASH_LAYOUT_SS_02M+02M_OPEN",
+      "flashes": [
+        {
+          "name": "qspi",
+          "port": "QSPI",
+          "flash": "QSPI_NOR_2MB_B64KB_S4KB_P256"
+        },
+		    {
+          "name": "spi",
+          "port": "SSP0",
+		  "comments": "SCLK,CS,RXD,TXD",
+          "gpio": "GPIO33@FUNC1,GPIO34@FUNC1,GPIO35@FUNC1,GPIO36@FUNC1",
+		  "clk":  "26M",
+          "flash": "SPI_NOR_2MB_B64KB_S4KB_P256"
+        }
+      ]
+    },
+    {
+      "name": "QUEC_CRANEL_SS_02MB+02M_DSP_EXT_OPEN",
+      "version-bootrom": "2021.10.16",
+      "template": "CRANEL_QUEC_TEMPLATE_SS_02M+02M_DSP_EXT_OPEN",
+      "layout": "CRANEL_QUEC_FLASH_LAYOUT_SS_02M+02M_DSP_EXT_OPEN",
+      "flashes": [
+        {
+          "name": "qspi",
+          "port": "QSPI",
+          "flash": "QSPI_NOR_2MB_B64KB_S4KB_P256"
+        },
+		{
+          "name": "spi",
+          "port": "SSP0",
+          "comments": "SCLK,CS,RXD,TXD",
+          "gpio": "GPIO33@FUNC1,GPIO34@FUNC1,GPIO35@FUNC1,GPIO36@FUNC1",
+		  "clk":  "26M",
+          "flash": "SPI_NOR_2MB_B64KB_S4KB_P256"
+        }
+      ]
+    },
+	{
+      "name": "QUEC_CRANEL_SS_02MB+02M_DSP_EXT_OPEN_FACTORY",
+      "version-bootrom": "2021.10.16",
+      "template": "CRANEL_QUEC_TEMPLATE_SS_02M+02M_DSP_EXT_OPEN_FACTORY",
+      "layout": "CRANEL_QUEC_FLASH_LAYOUT_SS_02M+02M_DSP_EXT_OPEN",
+      "flashes": [
+        {
+          "name": "qspi",
+          "port": "QSPI",
+          "flash": "QSPI_NOR_2MB_B64KB_S4KB_P256"
+        },
+		{
+          "name": "spi",
+          "port": "SSP0",
+          "comments": "SCLK,CS,RXD,TXD",
+          "gpio": "GPIO33@FUNC1,GPIO34@FUNC1,GPIO35@FUNC1,GPIO36@FUNC1",
+		  "clk":  "26M",
+          "flash": "SPI_NOR_2MB_B64KB_S4KB_P256"
+        }
+      ]
+    },
+    {
+      "name": "QUEC_CRANEL_SS_02MB+04M_DSP_EXT_OPEN",
+      "version-bootrom": "2021.10.16",
+      "template": "CRANEL_QUEC_TEMPLATE_SS_02M+04M_DSP_EXT_OPEN",
+      "layout": "CRANEL_QUEC_FLASH_LAYOUT_SS_02M+04M_DSP_EXT_OPEN",
+      "flashes": [
+        {
+          "name": "qspi",
+          "port": "QSPI",
+          "flash": "SPI_NOR_4MB_B64KB_S4KB_P256"
+        },
+		{
+          "name": "spi",
+          "port": "SSP0",
+          "comments": "SCLK,CS,RXD,TXD",
+          "gpio": "GPIO33@FUNC1,GPIO34@FUNC1,GPIO35@FUNC1,GPIO36@FUNC1",
+		  "clk":  "26M",
+          "flash": "SPI_NOR_4MB_B64KB_S4KB_P256"
+        }
+      ]
+    },
+	{
+      "name": "QUEC_CRANEL_SS_02MB+04M_DSP_EXT_OPEN_FACTORY",
+      "version-bootrom": "2021.10.16",
+      "template": "CRANEL_QUEC_TEMPLATE_SS_02M+04M_DSP_EXT_OPEN_FACTORY",
+      "layout": "CRANEL_QUEC_FLASH_LAYOUT_SS_02M+04M_DSP_EXT_OPEN",
+      "flashes": [
+        {
+          "name": "qspi",
+          "port": "QSPI",
+          "flash": "SPI_NOR_4MB_B64KB_S4KB_P256"
+        },
+		{
+          "name": "spi",
+          "port": "SSP0",
+          "comments": "SCLK,CS,RXD,TXD",
+          "gpio": "GPIO33@FUNC1,GPIO34@FUNC1,GPIO35@FUNC1,GPIO36@FUNC1",
+		  "clk":  "26M",
+          "flash": "SPI_NOR_4MB_B64KB_S4KB_P256"
+        }
+      ]
+    },
+    {
+      "name": "QUEC_CRANEL_SS_02MB+16M_OPEN",
+      "version-bootrom": "2021.10.16",
+      "template": "CRANEL_QUEC_TEMPLATE_SS_02M+16M_OPEN",
+      "layout": "CRANEL_QUEC_FLASH_LAYOUT_SS_02M+16M_OPEN",
+      "flashes": [
+        {
+          "name": "qspi",
+          "port": "QSPI",
+          "flash": "QSPI_NOR_2MB_B64KB_S4KB_P256"
+        },
+		    {
+          "name": "spi",
+          "port": "SSP0",
+		  "comments": "SCLK,CS,RXD,TXD",
+          "gpio": "GPIO33@FUNC1,GPIO34@FUNC1,GPIO35@FUNC1,GPIO36@FUNC1",
+		  "clk":  "26M",
+          "flash": "SPI_NOR_16MB_B64KB_S4KB_P256"
+        }
+      ]
+    },
+	{
+      "name": "QUEC_CRANEL_SS_04MB+04M_OPEN",
+      "version-bootrom": "2021.10.16",
+      "template": "CRANEL_QUEC_TEMPLATE_SS_4M+04M_OPEN",
+      "layout": "CRANEL_QUEC_FLASH_LAYOUT_SS_4M+04M_OPEN",
+      "flashes": [
+        {
+          "name": "qspi",
+          "port": "QSPI",
+          "flash": "QSPI_NOR_4MB_B64KB_S4KB_P256"
+        },
+		    {
+          "name": "spi",
+          "port": "SSP0",
+          "comments": "SCLK,CS,RXD,TXD",
+          "gpio": "GPIO33@FUNC1,GPIO34@FUNC1,GPIO35@FUNC1,GPIO36@FUNC1",
+		  "clk":  "26M",
+          "flash": "SPI_NOR_4MB_B64KB_S4KB_P256"
+        }
+      ]
+    },
+	
+	{
+      "name": "QUEC_CRANEL_SS_04MB+08M_OPEN",
+      "version-bootrom": "2021.10.16",
+      "template": "CRANEL_QUEC_TEMPLATE_SS_04M+08M_OPEN",
+      "layout": "CRANEL_QUEC_FLASH_LAYOUT_SS_04M+08M_OPEN",
+      "flashes": [
+        {
+          "name": "qspi",
+          "port": "QSPI",
+          "flash": "QSPI_NOR_4MB_B64KB_S4KB_P256"
+        },
+		    {
+          "name": "spi",
+          "port": "SSP0",
+          "comments": "SCLK,CS,RXD,TXD",
+          "gpio": "GPIO33@FUNC1,GPIO34@FUNC1,GPIO35@FUNC1,GPIO36@FUNC1",
+		  "clk":  "26M",
+          "flash": "SPI_NOR_8MB_B64KB_S4KB_P256"
+        }
+      ]
+    },
+	{
+      "name": "QUEC_CRANEL_SS_02MB_OPEN_FACTORY",
+      "version-bootrom": "2021.10.16",
+      "template": "CRANEL_QUEC_TEMPLATE_SS_02M_OPEN_FACTORY",
+      "layout": "CRANEL_QUEC_FLASH_LAYOUT_SS_02M_OPEN",
+      "flashes": [
+        {
+          "name": "qspi",
+          "port": "QSPI",
+          "flash": "QSPI_NOR_2MB_B64KB_S4KB_P256"
+        }
+      ]
+    },
+   	{
+      "name": "QUEC_CRANEL_SS_04MB_HX_GNSS_OPEN",
+      "version-bootrom": "2021.10.16",
+      "template": "CRANEL_QUEC_TEMPLATE_SS_4M_HX_GPS_OPEN",
+      "layout": "CRANEL_QUEC_FLASH_LAYOUT_SS_4M_HX_GPS_OPEN",
+      "flashes": [
+        {
+          "name": "qspi",
+          "port": "QSPI",
+          "flash": "QSPI_NOR_4MB_B64KB_S4KB_P256"
+        }
+      ]
+    },
+    {
+      "name": "QUEC_CRANEL_SS_04MB_HX_GNSS_OPEN_FACTORY",
+      "version-bootrom": "2021.10.16",
+      "template": "CRANEL_QUEC_TEMPLATE_SS_4M_HX_GPS_OPEN_FACTORY",
+      "layout": "CRANEL_QUEC_FLASH_LAYOUT_SS_4M_HX_GPS_OPEN",
+      "flashes": [
+        {
+          "name": "qspi",
+          "port": "QSPI",
+          "flash": "QSPI_NOR_4MB_B64KB_S4KB_P256"
+        }
+      ]
+    },
+    {
+      "name": "QUEC_CRANEL_SS_04MB_HX_GNSS+08M_OPEN",
+      "version-bootrom": "2021.10.16",
+      "template": "CRANEL_QUEC_TEMPLATE_SS_04M+08M_HX_GPS_OPEN",
+      "layout": "CRANEL_QUEC_FLASH_LAYOUT_SS_04M+08M_HX_GPS_OPEN",
+      "flashes": [
+        {
+          "name": "qspi",
+          "port": "QSPI",
+          "flash": "QSPI_NOR_4MB_B64KB_S4KB_P256"
+        },
+		    {
+          "name": "spi",
+          "port": "SSP0",
+          "comments": "SCLK,CS,RXD,TXD",
+          "gpio": "GPIO33@FUNC1,GPIO34@FUNC1,GPIO35@FUNC1,GPIO36@FUNC1",
+		  "clk":  "26M",
+          "flash": "SPI_NOR_8MB_B64KB_S4KB_P256"
+        }
+      ]
+    },
+    {
+      "name": "QUEC_CRANEL_SS_04MB_HX_GNSS_IMSSMS_OPEN",
+      "version-bootrom": "2021.10.16",
+      "template": "CRANEL_QUEC_TEMPLATE_SS_4M_HX_GPS_OPEN",
+      "layout": "CRANEL_QUEC_FLASH_LAYOUT_SS_4M_HX_GPS_IMSSMS_OPEN",
+      "flashes": [
+        {
+          "name": "qspi",
+          "port": "QSPI",
+          "flash": "QSPI_NOR_4MB_B64KB_S4KB_P256"
+        }
+      ]
+    },
+    {
+      "name": "QUEC_CRANEL_SS_04MB_HX_GNSS_IMSSMS_OPEN_FACTORY",
+      "version-bootrom": "2021.10.16",
+      "template": "CRANEL_QUEC_TEMPLATE_SS_4M_HX_GPS_OPEN_FACTORY",
+      "layout": "CRANEL_QUEC_FLASH_LAYOUT_SS_4M_HX_GPS_IMSSMS_OPEN",
+      "flashes": [
+        {
+          "name": "qspi",
+          "port": "QSPI",
+          "flash": "QSPI_NOR_4MB_B64KB_S4KB_P256"
+        }
+      ]
+    },
+    {
+      "name": "QUEC_CRANEL_SS_04MB_OPEN",
+      "version-bootrom": "2021.10.16",
+      "template": "CRANEL_QUEC_TEMPLATE_SS_4M_OPEN",
+      "layout": "CRANEL_QUEC_FLASH_LAYOUT_SS_4M_OPEN",
+      "flashes": [
+        {
+          "name": "qspi",
+          "port": "QSPI",
+          "flash": "QSPI_NOR_4MB_B64KB_S4KB_P256"
+        }
+      ]
+    },    
+	{
+      "name": "QUEC_CRANEL_SS_04MB_OPEN_FACTORY",
+      "version-bootrom": "2021.10.16",
+      "template": "CRANEL_QUEC_TEMPLATE_SS_4M_OPEN_FACTORY",
+      "layout": "CRANEL_QUEC_FLASH_LAYOUT_SS_4M_OPEN",
+      "flashes": [
+        {
+          "name": "qspi",
+          "port": "QSPI",
+          "flash": "QSPI_NOR_4MB_B64KB_S4KB_P256"
+        }
+      ]
+    },
+	{
+      "name": "QUEC_CRANEL_SS_04MB_FACT_24KB_OPEN",
+      "version-bootrom": "2021.10.16",
+      "template": "CRANEL_QUEC_TEMPLATE_SS_4M_OPEN",
+      "layout": "CRANEL_QUEC_FLASH_LAYOUT_SS_4M_FACT_24KB_OPEN",
+      "flashes": [
+        {
+          "name": "qspi",
+          "port": "QSPI",
+          "flash": "QSPI_NOR_4MB_B64KB_S4KB_P256"
+        }
+      ]
+    },    
+	{
+      "name": "QUEC_CRANEL_SS_04MB_FACT_24KB_OPEN_FACTORY",
+      "version-bootrom": "2021.10.16",
+      "template": "CRANEL_QUEC_TEMPLATE_SS_4M_OPEN_FACTORY",
+      "layout": "CRANEL_QUEC_FLASH_LAYOUT_SS_4M_FACT_24KB_OPEN",
+      "flashes": [
+        {
+          "name": "qspi",
+          "port": "QSPI",
+          "flash": "QSPI_NOR_4MB_B64KB_S4KB_P256"
+        }
+      ]
+    },
+    {
+      "name": "QUEC_CRANEL_SS_08MB_OPEN",
+      "version-bootrom": "2021.10.16",
+      "template": "CRANEL_QUEC_TEMPLATE_SS_8M_OPEN",
+      "layout": "CRANEL_QUEC_FLASH_LAYOUT_SS_8M_OPEN",
+      "flashes": [
+        {
+          "name": "qspi",
+          "port": "QSPI",
+          "flash": "QSPI_NOR_8MB_B64KB_S4KB_P256"
+        }
+      ]
+    },  
+    {
+      "name": "QUEC_CRANEL_SS_08MB_08M_OPEN",
+      "version-bootrom": "2021.10.16",
+      "template": "CRANEL_QUEC_TEMPLATE_DS_8M_8M_OPEN",
+      "layout": "CRANEL_QUEC_FLASH_LAYOUT_DS_8M_8M_OPEN",
+      "flashes": [
+        {
+          "name": "qspi",
+          "port": "QSPI",
+          "flash": "QSPI_NOR_8MB_B64KB_S4KB_P256"
+        },
+		{
+          "name": "spi",
+          "port": "SSP0",
+          "comments": "SCLK,CS,RXD,TXD",
+          "gpio": "GPIO33@FUNC1,GPIO34@FUNC1,GPIO35@FUNC1,GPIO36@FUNC1",
+		  "clk":  "26M",
+          "flash": "SPI_NOR_8MB_B64KB_S4KB_P256"
+        }
+      ]
+    }, 	
+	{
+      "name": "QUEC_CRANEL_SS_08MB_OPEN_FACTORY",
+      "version-bootrom": "2021.10.16",
+      "template": "CRANEL_QUEC_TEMPLATE_SS_8M_OPEN_FACTORY",
+      "layout": "CRANEL_QUEC_FLASH_LAYOUT_SS_8M_OPEN",
+      "flashes": [
+        {
+          "name": "qspi",
+          "port": "QSPI",
+          "flash": "QSPI_NOR_8MB_B64KB_S4KB_P256"
+        }
+      ]
+    },
+    {
+      "name": "ASR1606_08MB",
+      "version-bootrom": "2021.10.16",
+      "template": "CRANEL_SINGLE_SIM_QUEC_TEMPLATE",
+      "layout": "ASR1606_SINGLE_FLASH_LAYOUT",
+      "flashes": [
+        {
+          "name": "qspi",
+          "port": "QSPI",
+          "flash": "QSPI_NOR_8MB_B64KB_S4KB_P256"
+        }
+      ]
+    },
+    {
+      "name": "ASR1606_ASR5311_04MB",
+      "version-bootrom": "2021.10.16",
+      "template": "ASR1606_ASR5311_TEMPLATE",
+      "layout": "ASR1606_ASR5311_FLASH_LAYOUT",
+      "flashes": [
+        {
+          "name": "qspi",
+          "port": "QSPI",
+          "flash": "QSPI_NOR_4MB_B64KB_S4KB_P256"
+        }
+      ]
+    },
+    {
+      "name": "ASR1606_SINGLE_SIM_04MB",
+      "version-bootrom": "2021.10.16",
+      "template": "ASR1606_SINGLE_SIM_TEMPLATE",
+      "layout": "ASR1606_SINGLE_SIM_FLASH_LAYOUT",
+      "flashes": [
+        {
+          "name": "qspi",
+          "port": "QSPI",
+          "flash": "QSPI_NOR_4MB_B64KB_S4KB_P256"
+        }
+      ]
+    },
+    {
+      "name": "ASR1606_ASR5311_08MB",
+      "version-bootrom": "2021.10.16",
+      "template": "ASR1606_ASR5311_TEMPLATE",
+      "layout": "ASR1606_ASR5311_FLASH_LAYOUT",
+      "flashes": [
+        {
+          "name": "qspi",
+          "port": "QSPI",
+          "flash": "QSPI_NOR_8MB_B64KB_S4KB_P256"
+        }
+      ]
+    }
+  ]
+}

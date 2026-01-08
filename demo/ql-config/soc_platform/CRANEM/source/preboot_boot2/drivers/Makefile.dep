@@ -1,0 +1,5 @@
+# driver dependencies (in alphabetical order)
+
+ifneq (,$(filter flash,$(USEMODULE)))
+  USEMODULE += spi
+endif
