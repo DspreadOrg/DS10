@@ -8,6 +8,6 @@ Number_of_Images = 2
 2_Image_Enable = 1
 2_Image_Image_ID = 0x31
 2_Image_Path = customer_app.bin
-2_Image_Flash_Entry_Address = 0x467000
+2_Image_Flash_Entry_Address = 0x434000
 2_Image_ID_Name = 2
 

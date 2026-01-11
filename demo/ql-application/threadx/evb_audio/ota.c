@@ -1507,9 +1507,7 @@ void larktms_taskparam_save(plarktms_task_params param)
 
     do
     {
-        fp = ql_fopen(LARKTMS_TASK_STATUS_FILE_PATH, "ab+");
-        if (fp == NULL)
-            fp = ql_fopen(LARKTMS_TASK_STATUS_FILE_PATH, "wb+");
+        fp = ql_fopen(LARKTMS_TASK_STATUS_FILE_PATH, "wb+");
         if (fp == NULL) {
             LARKTMS_DBG("%s_%d === open %s file failed!\n", __func__, __LINE__, LARKTMS_TASK_STATUS_FILE_PATH);
             break;
