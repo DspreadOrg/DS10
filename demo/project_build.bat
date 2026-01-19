@@ -29,7 +29,7 @@ echo.
 echo         1:build clean
 echo         2:build app
 echo         3:packet firmware (zip file)
-echo         4:packet APP OTA file(bin file)
+echo         4:packet APP OTA file(bin file,Step three must be executed first before generating OTA firmware )
 rem echo         5:packet DIFF SYS OTA file(bin file)
 rem echo         6:packet DIFF APP SYS OTA file(bin file)
 echo         7:set device type
@@ -62,8 +62,8 @@ echo.
 echo          		module selection
 echo         ===========================
 echo.
-echo         1:EG800AKCN_91LC			(4+4)
-echo         2:EC600MEU_LA				(8+8)
+echo         1:NO SCREEN			
+echo         2:WITH SCREEN				
 echo         0:clean device type configuration and return main menu
 echo.
 :check_select_module
@@ -172,7 +172,7 @@ echo #define CONF_DEVTYPE_DEFAULT "%devtype%">>%dev_head_file%
 echo #endif >> %dev_head_file%
 echo CONF_DEVTYPE_NAME=%devtype%> %config_mk_file%
 echo OK
-echo The configuration has been saved to£º
+echo The configuration has been saved to devtype.conf
 echo %dev_head_file%
 echo.
 pause >nul
@@ -196,7 +196,7 @@ goto menu
 rem set module=%choice%
 call build.bat app
 echo.
-echo         App compilation successfully£¬Please confirm the compilation process prompt.
+echo         App compilation successfully.Please confirm the compilation process prompt.
 echo.
 pause >nul
 goto menu
@@ -205,26 +205,26 @@ goto menu
 call build.bat firmware
 rem call build.bat firmware
 echo.
-echo         Firmware packet successfully£¬Please confirm the compilation process prompt.
+echo         Firmware packet successfully.Please confirm the compilation process prompt.
 echo.
 pause >nul
 goto menu
 
 :s_make_ota_firmware
 call make_ota_firmware.bat
-echo         OTA bin packet successfully£¬Please confirm the compilation process prompt.
+echo         OTA bin packet successfully.Please confirm the compilation process prompt.
 pause >nul
 goto menu
 
 :s_make_diff_sys_ota_firmware
 call make_diff_sys_ota_firmware.bat
-echo         OTA bin packet successfully£¬Please confirm the compilation process prompt.
+echo         OTA bin packet successfully.Please confirm the compilation process prompt.
 pause >nul
 goto menu
 
 :s_make_diff_app_sys_ota_firmware
 call make_diff_app_sys_ota_firmware.bat
-echo         OTA bin packet successfully£¬Please confirm the compilation process prompt.
+echo         OTA bin packet successfully.Please confirm the compilation process prompt.
 pause >nul
 goto menu
 
