@@ -64,6 +64,9 @@ DS10/
 
 ### 3. Cloud Communication
 
+- **Toolchain:** Please visit the following address to download the compilation chain package "owtoolchain.zip" `https://drive.google.com/file/d/1yVfltWdgUpjrMy-ondYa0T5ihrqVkj3v/view?usp=sharing`
+  
+  After downloading the toolkit, unzip it and place it in the root directory of the C drive.The final path should be :C:\owtoolchain
 - **MQTT Protocol**: Supports Alibaba Cloud IoT platform
 - **OTA Upgrade**: Supports remote firmware upgrade
 - **Data Reporting**: Device status and data reporting functionality
