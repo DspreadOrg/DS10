@@ -67,8 +67,11 @@ DS10/
 - **Toolchain:** Please visit the following address to download the compilation chain package "owtoolchain.zip" `https://drive.google.com/file/d/1yVfltWdgUpjrMy-ondYa0T5ihrqVkj3v/view?usp=sharing`
   
   After downloading the toolkit, unzip it and place it in the root directory of the C drive.The final path should be :C:\owtoolchain
+
 - **MQTT Protocol**: Supports Alibaba Cloud IoT platform
+
 - **OTA Upgrade**: Supports remote firmware upgrade
+
 - **Data Reporting**: Device status and data reporting functionality
 
 ### 4. Hardware Interface
@@ -97,8 +100,12 @@ DS10/
 1. **Configure Device Type**:
    
    ```batch
-   # Select module type (NO SCREEN or WITH SCREEN)
-   # Select device type (DS10)
+   # Select module type 
+           1:DS10-S-CN EG800AKCN_91LC			
+           2:DS10-D-EU EC600MEU_LA				    
+           3:DS10-S-EU EG800AKEU_11LC			
+           4:DS10-D-CN EC600MCN_LE			    	
+   
    ```
 
 2. **Build Application**:

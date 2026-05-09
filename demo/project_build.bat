@@ -29,13 +29,9 @@ echo.
 echo         1:build clean
 echo         2:build app
 echo         3:packet firmware (zip file)
-echo         4:packet APP OTA file(bin file,Step three must be executed first before generating OTA firmware )
-rem echo         5:packet DIFF SYS OTA file(bin file)
-rem echo         6:packet DIFF APP SYS OTA file(bin file)
-echo         7:set device type
+echo         4:packet APP OTA file(bin file,Step 3 must be executed first before generating OTA firmware )
+echo         5:set device type
 echo         0:quit
-echo.
-echo         nots: if you select item 6 and item 7, kernel will be rebuilded , dn't do it if no needs. just only build app and packet firmware in normol
 echo.
 echo         prj-dir:%~dp0
 :cl
@@ -46,9 +42,8 @@ if /i "%choice%"=="1" goto s_build_clean
 if /i "%choice%"=="2" goto s_build_app
 if /i "%choice%"=="3" goto s_make_firmware
 if /i "%choice%"=="4" goto s_make_ota_firmware
-rem if /i "%choice%"=="5" goto s_make_diff_sys_ota_firmware
-rem if /i "%choice%"=="6" goto s_make_diff_app_sys_ota_firmware
-if /i "%choice%"=="7" goto s_select_module
+
+if /i "%choice%"=="5" goto s_select_module
 if /i "%choice%"=="0" goto EX
 
 echo.
@@ -62,8 +57,10 @@ echo.
 echo          		module selection
 echo         ===========================
 echo.
-echo         1:NO SCREEN			
-echo         2:WITH SCREEN				
+echo         1:DS10-S-CN
+echo         2:DS10-D-EU
+echo         3:DS10-S-EU
+echo         4:DS10-D-CN			
 echo         0:clean device type configuration and return main menu
 echo.
 :check_select_module
@@ -77,6 +74,14 @@ if /i "%choice%"=="1" (
 )
 if /i "%choice%"=="2" (
 	set module=EC600MEU_LA
+	set module_ver=4GW_V071501_100_R07A15
+)
+if /i "%choice%"=="3" (
+	set module=EG800AKEU_11LC
+	set module_ver=4GW_V071501_100_R07A15
+)
+if /i "%choice%"=="4" (
+	set module=EC600MCN_LE
 	set module_ver=4GW_V071501_100_R07A15
 )
 if /i "%choice%"=="0" (
@@ -108,40 +113,11 @@ call build.bat project_name -p %module% -b %ex_fshsize% -x %APP_MODE% -c %cust_v
 echo *****************  MODULE:%module%	***************************
 
 echo.
-pause >nul
 
 
 :s_select_devtype
-set choice=
-cls
-echo.
-echo                device selectio
-echo         ===========================
-echo         1:DS10
-echo.
-echo.
-echo         0:clean device type configuration and return main menu
-echo.
-:check_select
-echo.
-set /p choice=         please select item number, then click enter button:
-set devtype=
-IF NOT "%choice%"=="" SET choice=%choice:~0,1%
-if /i "%choice%"=="1" (
-	set devtype=DS10
-)
 
-if /i "%choice%"=="0" (
-	set devtype=UNKNOW
-)
-if "%devtype%" equ "" (
-echo.
-echo         Invalid selection, please enter again
-echo.
-goto check_select
-)
-
-
+set devtype=DS10
 
 goto save_devtype
 
@@ -171,10 +147,12 @@ echo #define __CONF_DEVTYPE_H__ >> %dev_head_file%
 echo #define CONF_DEVTYPE_DEFAULT "%devtype%">>%dev_head_file%
 echo #endif >> %dev_head_file%
 echo CONF_DEVTYPE_NAME=%devtype%> %config_mk_file%
-echo OK
+echo.
 echo The configuration has been saved to devtype.conf
 echo %dev_head_file%
 echo.
+echo OK
+echo Press any key to return to the main menu.
 pause >nul
 goto menu
 
