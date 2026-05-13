@@ -1209,6 +1209,13 @@ int Ext_Wifi_CertAndParamOta(char * url)
             break;
         }
 
+        ret = update_cert();
+        if(ret!= 0)
+        {
+            ret = -1;
+            break;
+        }
+
     }while(0);
 
 exit:
