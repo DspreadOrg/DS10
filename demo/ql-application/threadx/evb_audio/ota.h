@@ -47,6 +47,9 @@ extern "C" {
 #define OTA_OPT_PROTOCOL_FILE           1
 #define OTA_OPT_PROTOCOL_HTTP           1
 
+#define LARKTMS_URL					"https://www.dspreadser.net"
+#define LARKTMS_PORT				"9011"
+
 #define LARKTMS_PARAM_FILE_PATH             "DevParam.zip"
 #define CERT_ROOTCA_FILE_NAME       "ServerCA.pem"
 #define CERT_DEVCERT_FILE_NAME      "deviceCert.pem"

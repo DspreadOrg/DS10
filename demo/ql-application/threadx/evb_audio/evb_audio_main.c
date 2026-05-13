@@ -341,7 +341,7 @@ int FuncWifiRetryRepeat(void)
 		LOG_INFO("enter %s , line %d,SntpOk %d\n", __func__, __LINE__, TermInfo.SntpOk);
 		
 		Wifi_SntpTime("cn.ntp.org.cn");//�����й�ʱ��
-		if(Wifi_SntpTime(NULL) ) // ͬ��ʱ��ʧ��  ����task5sͬ��һ��ֱ���ɹ�
+		if(Wifi_SntpTime(NULL) ) ///同步时间失败 开启task5s同步一次直至成功
 			TermInfo.RepTim =ql_rtos_get_systicks_to_s()+5;
 		else 
 			TermInfo.SntpOk=1;
@@ -1123,7 +1123,8 @@ void list_dir(const char *path)
 void App_task(void *pvParameters)
 {
 	start();
-	{
+	{	
+		usb_log_printf("\r\nDevice id:%d\r\n",get_device_config()->id);
 		uint32_t disk_empty_size = ql_fs_free_size(U_DISK_SYM);
 	    int disk_total_size = ql_fs_size(U_DISK_SYM);
 	    usb_log_printf("%s_%d :U %d\r\n", __func__, __LINE__, disk_empty_size);
@@ -1209,6 +1210,11 @@ void AppFsInit(void)
 		ql_mkdir(CUST_PARAM_FILE_PATH_DS10AK, 0x777);	
 		set_cust_param_path(CUST_PARAM_FILE_PATH_DS10AK);
 	}
+	else
+	{
+		ql_mkdir(CUST_PARAM_FILE_PATH_DS10AK, 0x777);	
+		set_cust_param_path(CUST_PARAM_FILE_PATH_DS10AK);
+	}
 }
 
 void AppTaskInit(void)
@@ -1262,7 +1268,50 @@ void ex_fs_init(void)
 	ret = qextfs_init('B', "customer_backup_fs", 0, port_index, 0, 0x800000);
 	LOG_INFO("[FS] ========== exfs init : %d  \r\n", ret);
 }
+int isEnterConfigMode()
+{
+	unsigned char level1 = -1;
+	unsigned char level2 = -1;
 
+	unsigned char keypress=0;
+	uint8_t ret = 0;	
+	ql_gpio_init(GPIO_PIN_NO_2, PIN_DIRECTION_IN, PIN_PULL_PU, PIN_LEVEL_HIGH);
+	ql_gpio_init(GPIO_PIN_NO_1, PIN_DIRECTION_IN, PIN_PULL_PU, PIN_LEVEL_HIGH);
+	ql_gpio_get_level(GPIO_PIN_NO_1, &level1);	
+	ql_gpio_get_level(GPIO_PIN_NO_2, &level2);	
+	ql_rtos_task_sleep_ms(100);
+	printf("++++ql_gpio_get_level(GPIO_PIN_NO_18, &level)=%d\r\n",level1);
+	if(level1==0 && level2 != 0)
+	{
+		return 1;
+	}
+	if(level2 == 0 && level1 != 0)
+	{
+		return 2;
+	}
+
+	if( level1 == 0 && level2 == 0)
+	{
+		return 3;
+	}
+	// uart_task_init();
+	// while(1)
+	// {
+	// 	if(keypress)
+	// 	{
+	// 		ret = 1;
+	// 		break;
+	// 	}
+	// 	else 
+	// 	{
+	// 		ret = 0;
+	// 		break;	
+	// 	}
+	// 	ql_rtos_task_sleep_ms(10);
+	// }
+
+	return ret;
+}
 
 void evb_audio_main(void * param)
 {

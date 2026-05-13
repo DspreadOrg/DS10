@@ -316,6 +316,13 @@ static int ui_event_service(void)
     return min_period_ms;
 }
 
+void disp_test()
+{
+    g_lv_img_qsmzf = lv_img_create( g_bg );
+    lv_img_set_src( g_lv_img_qsmzf, "B:/img/sale.png" );
+    lv_obj_align( g_lv_img_qsmzf, LV_ALIGN_CENTER, 0, 40 );
+    // lv_obj_add_flag( g_lv_img_qsmzf, LV_OBJ_FLAG_HIDDEN );
+}
 // display ui init
 int ui_init(void)
 {

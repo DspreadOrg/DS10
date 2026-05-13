@@ -145,7 +145,7 @@ int larktms_init()
             goto exit;
         memset( clientParams, 0, sizeof(HTTPParameters) );
         //clientParams->pHTTP =() httpHeader;
-        sprintf( clientParams->Uri,"%s:%s/terminal/push/connectParam/%s" ,sysparam_get()->larktms_url,sysparam_get()->larktms_port,
+        sprintf( clientParams->Uri,"%s:%s/terminal/push/connectParam/%s" ,LARKTMS_URL,LARKTMS_PORT,
                          sysparam_get()->device_SN);
         LARKTMS_DBG("%s \r\n",clientParams->Uri);
 
@@ -352,7 +352,7 @@ int larktms_hearbeat(larktms_heartbeat_param *param)
         goto exit;
     memset( clientParams, 0, sizeof(HTTPParameters) );
     //clientParams->pHTTP =() httpHeader;
-    sprintf( clientParams->Uri,"%s:%s/terminal/heartBeat/%s" ,sysparam_get()->larktms_url,sysparam_get()->larktms_port,
+    sprintf( clientParams->Uri,"%s:%s/terminal/heartBeat/%s" ,LARKTMS_URL,LARKTMS_PORT,
                         sysparam_get()->device_SN);
     LARKTMS_DBG("%s \r\n",clientParams->Uri);
 
@@ -361,7 +361,6 @@ int larktms_hearbeat(larktms_heartbeat_param *param)
     clientParams->pLength = strlen(sendData);
     const char * const LarkTmsHeadAdd[]=
     {
-        //"Host",sysparam_get()->larktms_url,
         "Content-Type","application/json",
         "platformVersion","3",
         "remoteDebug","0",
@@ -484,7 +483,7 @@ int larktms_version_validate(plarktms_task_params param)
         goto exit;
     memset( clientParams, 0, sizeof(HTTPParameters) );
     //clientParams->pHTTP =() httpHeader;
-    sprintf( clientParams->Uri,"%s:%s/terminal/validate/%s/%s" ,sysparam_get()->larktms_url,sysparam_get()->larktms_port,
+    sprintf( clientParams->Uri,"%s:%s/terminal/validate/%s/%s" ,LARKTMS_URL,LARKTMS_PORT,
                         sysparam_get()->device_SN,param->taskId);
     LARKTMS_DBG("%s \r\n",clientParams->Uri);
     clientParams->HttpVerb = VerbPost;
@@ -594,7 +593,7 @@ int larktms_get_download_url(plarktms_task_params param,char *downloadUrl)
     if ( !clientParams )
         goto exit;
     memset( clientParams, 0, sizeof(HTTPParameters) );
-    sprintf( clientParams->Uri,"%s:%s/terminal/getTaskFileDownloadUrl/%s/%s" ,sysparam_get()->larktms_url,sysparam_get()->larktms_port,
+    sprintf( clientParams->Uri,"%s:%s/terminal/getTaskFileDownloadUrl/%s/%s" ,LARKTMS_URL,LARKTMS_PORT,
                         sysparam_get()->device_SN,param->taskId);
     LARKTMS_DBG("%s \r\n",clientParams->Uri);
     clientParams->HttpVerb = VerbGet;
@@ -602,7 +601,6 @@ int larktms_get_download_url(plarktms_task_params param,char *downloadUrl)
     clientParams->pLength = strlen(sendData);
     const char * const getDownloadUrlHeadAdd[]=
     {
-        //"Host",sysparam_get()->larktms_url,
         "Content-Type","application/json",
         "platformVersion","3",
         "remoteDebug","0",
@@ -718,8 +716,7 @@ void larktms_upload_tasklog(plarktms_task_params param,char *msg,int status,int 
     if ( !clientParams )
         goto exit;
     memset( clientParams, 0, sizeof(HTTPParameters) );
-    //clientParams->pHTTP =() httpHeader;
-    sprintf( clientParams->Uri,"%s:%s/terminal/updateTaskLog/%s/%s" ,sysparam_get()->larktms_url,sysparam_get()->larktms_port,
+    sprintf( clientParams->Uri,"%s:%s/terminal/updateTaskLog/%s/%s" ,LARKTMS_URL,LARKTMS_PORT,
                         sysparam_get()->device_SN,param->taskId);
     LARKTMS_DBG("%s \r\n",clientParams->Uri);
     clientParams->HttpVerb = VerbPost;
@@ -1209,18 +1206,6 @@ int Ext_Wifi_CertAndParamOta(char * url)
         if(ret != 0)
         {
             LARKTMS_DBG("update param fail\n");
-            break;
-        }
-
-        ret = update_cert();
-        if(ret == 0)
-        {
-            sysparam_get()->CertState = 0x01;
-            sysparam_save();
-        }
-        else
-        {
-            ret = -1;
             break;
         }
 

@@ -5,7 +5,7 @@
   * @version V1.0.0
   * @date    2021/11/03
   * @brief   LCD 78x64 func file for C code
-  * @code    GBK±àÂë£¬
+  * @code    GBKï¿½ï¿½ï¿½ë£¬
   ******************************************************************************
   * @attention
   * <h2><center>&copy; COPYRIGHT 2021 YMZN</center></h2>
@@ -106,7 +106,7 @@ int animate_battery(void)
         {
             bat_state_update(1);
             disp_onoff_request(1,DISP_HOLDON_MS);
-            disp_clock_enable(0);
+            disp_clock_enable(1);
         }
         anm_state = 0;
     }
@@ -115,6 +115,7 @@ int animate_battery(void)
     {
         // no charge,update bat level disp
         bat_state_update(0);
+        disp_clock_enable(1);
         return 30000;
     }
 
