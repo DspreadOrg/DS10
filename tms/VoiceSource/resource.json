@@ -1,0 +1,15 @@
+{
+	"fileName": "VoiceResource_V11.0.6.zip",
+	"packageType": "CUST",
+	"supportVersion": ".*",
+	"md5": "62910e10c16b00aec7d96c682c70001b",
+	"desc": "update",
+	"platformVersion": 3,
+	"version": "V11.0.6",
+	"diffType": 1,
+	"customerVersion": "0.0.0",
+	"customerName": "DSPREAD",
+	"machineType": "DS10-S-CN",
+	"hardwarePlatform": "M",
+	"osVersion": "Q"
+}

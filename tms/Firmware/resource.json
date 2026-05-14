@@ -1,0 +1,15 @@
+{
+	"fileName": "DS10-S-CN_Firmware_V1.0.6.bin",
+	"packageType": "AP",
+	"supportVersion": ".*",
+	"md5": "15c63fad325055cb9b50025947393aca",
+	"desc": "update",
+	"platformVersion": 3,
+	"version": "V1.0.6",
+	"diffType": 1,
+	"customerVersion": "0.0.0",
+	"customerName": "DSPREAD",
+	"machineType": "DS10-S-CN",
+	"hardwarePlatform": "M",
+	"osVersion": "Q"
+}

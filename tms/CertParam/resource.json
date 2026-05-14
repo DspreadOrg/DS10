@@ -1,0 +1,15 @@
+{
+	"fileName": "CertParam_V1.0.6.zip",
+	"packageType": "CERT",
+	"supportVersion": ".*",
+	"md5": "f161e1020362fea0e05dda941cca5d55",
+	"desc": "update",
+	"platformVersion": 3,
+	"version": "V1.0.6",
+	"diffType": 1,
+	"customerVersion": "0.0.0",
+	"customerName": "DSPREAD",
+	"machineType": "DS10-S-CN",
+	"hardwarePlatform": "M",
+	"osVersion": "Q"
+}
