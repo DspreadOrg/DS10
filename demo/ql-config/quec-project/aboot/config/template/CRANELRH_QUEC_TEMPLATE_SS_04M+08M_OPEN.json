@@ -89,13 +89,6 @@
       "partition": "rfbin",
       "group": "2"
     },
-		{
-      "command": "flash",
-      "name": "fwcerts",
-      "type": "image",
-      "partition": "fwcerts",
-      "group": "2"
-    },
     {
       "command": "erase",
       "partition": "fota_param",
@@ -132,18 +125,11 @@
       "partition": "bootloader",
       "group": "1"
     },
-		{
-      "command": "flash",
-      "name": "app_cert",
-      "type": "image",
-      "partition": "app_cert",
-      "group": "11"
-    },
     {
       "command": "fuse",
       "name": "fuse",
       "type": "image",
-      "group": "11"
+      "group": "10"
     },
 	{
       "command": "flash",
@@ -218,12 +204,6 @@
 	{
       "name": "customer_fs",
       "image": "customer_fs.bin",
-      "io": "in",
-      "format": "raw"
-    },
-		{
-      "name": "app_cert",
-      "image": "app_cert.bin",
       "io": "in",
       "format": "raw"
     },
@@ -313,30 +293,6 @@
         ],
         "callBoot2": true,
         "certOnly": false
-      }
-    },
-		{
-      "name": "fwcerts",
-      "image": "fwcerts.bin",
-      "io": "out",
-      "format": "fip",
-      "fip": {
-        "images": [
-          {
-            "id": "CP_IMAGE_ID",
-            "image": "cp"
-          },
-          {
-            "id": "DSP_IMAGE_ID",
-            "image": "dsp"
-          },
-          {
-            "id": "USER1_IMAGE_ID",
-            "image": "app_cert"
-          }
-        ],
-        "callBoot2": false,
-        "certOnly": true
       }
     },
     {
