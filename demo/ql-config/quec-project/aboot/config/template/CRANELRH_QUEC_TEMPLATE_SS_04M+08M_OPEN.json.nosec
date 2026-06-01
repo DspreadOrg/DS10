@@ -1,5 +1,5 @@
 {
-    "name": "CRANEL_QUEC_TEMPLATE_DS_8M_8M_OPEN",
+  "name": "CRANELRH_QUEC_TEMPLATE_SS_04M+08M_OPEN",
   "commands": [
     {
       "command": "require",
@@ -63,13 +63,6 @@
     },
     {
       "command": "flash",
-      "name": "fwcerts",
-      "type": "image",
-      "partition": "fwcerts",
-      "group": "2"
-    },
-    {
-      "command": "flash",
       "name": "rd",
       "type": "image",
       "partition": "rd",
@@ -97,51 +90,31 @@
       "group": "2"
     },
     {
-      "command": "flash",
-      "name": "updater",
-      "type": "image",
-      "partition": "updater",
-      "group": "2"
-    },
-    {
       "command": "erase",
       "partition": "fota_param",
       "group": "3"
     },
-        	{
-      "command": "erase",
-      "partition": "erase_rd",
-      "group": "3"
-    },
     {
+      "command": "erase",
+      "partition": "nvm",
+      "group": "7"
+    },
+	{
       "command": "flash",
       "name": "customer_app",
       "type": "image",
       "partition": "customer_app",
       "group": "4"
     },
-    {
+	{
       "command": "erase",
       "partition": "ymzn_param",
       "productionOnly": true,
-      "group": "15"
-    },
-    {
-      "command": "flash",
-      "name": "app_cert",
-      "type": "image",
-      "partition": "app_cert",
-      "group": "14"
+      "group": "10"
     },
     {
       "command": "erase",
       "partition": "factory_a",
-      "productionOnly": true,
-      "group": "5"
-    },
-    {
-      "command": "erase",
-      "partition": "factory_b",
       "productionOnly": true,
       "group": "5"
     },
@@ -156,20 +129,20 @@
       "command": "fuse",
       "name": "fuse",
       "type": "image",
-      "group": "2"
+      "group": "10"
+    },
+	{
+      "command": "flash",
+      "name": "updater",
+      "type": "image",
+      "partition": "updater",
+      "group": "9"
     },
 	{
       "command": "flash",
       "name": "customer_fs",
       "type": "image",
       "partition": "customer_fs",
-        "group": "6"
-      },
-      {
-        "command": "flash",
-        "name": "customer_backup_fs",
-        "type": "image",
-        "partition": "customer_backup_fs",
       "group": "6"
     }
   ],
@@ -213,36 +186,24 @@
     {
       "name": "rfbin",
       "image": "rf.bin",
-        "io": "in",
-        "format": "raw"
-      },
-      {
-        "name": "updater",
-      "image": "updater.bin",
       "io": "in",
       "format": "raw"
     },
     {
+      "name": "updater",
+      "image": "updater.bin",
+      "io": "in",
+      "format": "raw"
+    },
+	{
       "name": "customer_app",
       "image": "customer_app.bin",
       "io": "in",
       "format": "raw"
     },
-    {
+	{
       "name": "customer_fs",
       "image": "customer_fs.bin",
-      "io": "in",
-      "format": "raw"
-    },
-      {
-        "name": "customer_backup_fs",
-        "image": "customer_backup_fs.bin",
-        "io": "in",
-        "format": "raw"
-      },
-    {
-      "name": "app_cert",
-      "image": "app_cert.bin",
       "io": "in",
       "format": "raw"
     },
@@ -268,7 +229,12 @@
       "name": "fuse",
       "image": "fuse.dat",
       "io": "out",
-      "format": "fuse"
+      "format": "fuse",
+      "fuse": {
+        "bankNum": 4,
+        "bankSize": 256,
+        "fuseBits": [[], [], [], []]
+      }
     },
     {
       "name": "preboot_lzma",
@@ -327,34 +293,6 @@
         ],
         "callBoot2": true,
         "certOnly": false
-      }
-    },
-    {
-      "name": "fwcerts",
-      "image": "fwcerts.bin",
-      "io": "out",
-      "format": "fip",
-      "fip": {
-        "images": [
-          {
-            "id": "CP_IMAGE_ID",
-            "image": "cp"
-          },
-          {
-            "id": "DSP_IMAGE_ID",
-            "image": "dsp"
-          },
-          {
-            "id": "USER1_IMAGE_ID",
-            "image": "app_cert"
-          },
-		  {
-            "id": "UPDATER_IMAGE_ID",
-            "image": "updater"
-          }
-        ],
-        "callBoot2": false,
-        "certOnly": true
       }
     },
     {
@@ -438,11 +376,6 @@
       ]
     }
   ],
-  "fuse": {
-    "bankNum": 4,
-    "bankSize": 256,
-    "fuseBits": [[], [], [], []]
-  },
   "values": {
     "product": "arom-tiny",
     "version": "",

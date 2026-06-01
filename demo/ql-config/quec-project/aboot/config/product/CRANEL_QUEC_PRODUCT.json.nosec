@@ -4,7 +4,7 @@
   "version": "0.5",
   "keyAlg": "rsa",
   "hashAlg": "sha256",
-  "secureBoot": true,
+  "secureBoot": false,
   "firmwareGenerator": {
     "name": "crane",
     "call-max-download-size": "60KiB",

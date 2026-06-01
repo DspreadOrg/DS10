@@ -67,12 +67,7 @@
               "name": "rfbin",
               "format": "raw",
               "size": "0"
-              },
-		  {
-              "name": "fwcerts",
-              "format": "raw",
-              "size": "12KiB"
-		  }
+              }
             ]
           },
           {
@@ -80,11 +75,6 @@
             "format": "raw",
             "size": "-1"
           },
-		  	  {
-		  "name": "app_cert",
-		  "format": "raw",
-		  "size": "4KiB"
-	  },
           {
             "name": "customer_app",
           "format": "raw",

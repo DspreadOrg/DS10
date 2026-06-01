@@ -21,7 +21,7 @@
         {
           "name": "bootloader",
           "format": "ubi",
-          "size": "88KiB"
+          "size": "92KiB"
         },
         {
           "name": "system",
@@ -78,7 +78,7 @@
 		{
 		  "name": "customer_fs",
 		  "format": "raw",
-		  "size": "2048KiB"
+      "size": "2048KiB"
 		},
 			{
           "name": "fota_pkg",

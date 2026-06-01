@@ -124,6 +124,47 @@ if exist %TOP_DIR%\ql-application\threadx\build (
 	rem %TOP_DIR%\ql-cross-tool\win32\host\tools\lzma.exe ds 18 e %TOP_DIR%\ql-application\threadx\build\app.bin %TOP_DIR%\ql-application\threadx\build\app_lzma.bin
 	rem set customer_app_image=%TOP_DIR%\ql-application\threadx\build\app_lzma.bin
 )
+goto nolzma
+set cmd_lzma=%TOP_DIR%\ql-cross-tool\win32\host\tools\lzma.exe
+if exist %TOP_DIR%\ql-application\threadx\build (
+	rem set customer_app_image=%TOP_DIR%\ql-application\threadx\build\app.bin
+	%cmd_lzma% ds 18 e %TOP_DIR%\ql-application\threadx\build\app.bin %TOP_DIR%\ql-application\threadx\build\app_lzma.bin
+	set customer_app_image=%TOP_DIR%\ql-application\threadx\build\app_lzma.bin
+)
+rem	echo "%cmd_lzma%"
+rem	echo "%customer_app_image%"
+:nolzma 
+rem goto nosign
+set SIGN_DIR=%TOP_DIR%\ql-cross-tool\sign
+set app_cert_image=%SIGN_DIR%\app_public_key.pem
+rem if not exist %SIGN_DIR%\app_private_key.pem goto sign_app
+rem 
+rem echo ************make app cert************
+rem set app_cert_file=%SIGN_DIR%\app_cert.bin
+rem del %app_cert_file%
+rem %SIGN_DIR%\make_app_cert %SIGN_DIR%\app_private_key.pem %SIGN_DIR%\app_cert.bin
+rem if exist %app_cert_file% (
+rem 	echo make app cert image success
+rem )else (
+rem 	echo make app cert image fail
+rem )
+rem echo **********make app cert end**********
+rem 
+rem :sign_app
+if not exist %app_cert_image% (
+    echo "app_public_key.pem not found"
+    goto build_end
+)
+copy /Y %customer_app_image% %TOP_DIR%\ql-application\threadx\build\customer_app.bin
+echo . 
+echo ************sign app************
+if exist %TOP_DIR%\ql-application\threadx\build (
+	%SIGN_DIR%\app_sign %SIGN_DIR%\app_private_key.pem %customer_app_image%
+	set customer_app_image=%customer_app_image%.sign
+)
+echo ************sign app end************
+echo . 
+:nosign
 rem only use for ota customer_app.bin
 if exist %TOP_DIR%\ql-application\threadx\build (
 	copy /Y %customer_app_image% %TOP_DIR%\ql-application\threadx\build\customer_app.bin
@@ -254,23 +295,23 @@ if "%ASR_PLATFORM%"=="1606" (
 
 	if "%OPEN_PACKAGE%"=="_OPEN" (
 		if "%aboot_image%"=="1609" (
-			set standard_arelease_iamges="cp=%cp_image%,cp2=%cp2_image%,dsp=%dsp_image%,boot33=%boot_nologo_image%,updater=%updater_image%,rfbin=%rfbin_image%,rd=%rd_image%,customer_app=%customer_app_image%,logo=%logo_image%,preboot_bin=%preboot_image%,boot2_bin=%boot2_image%,customer_fs=%customer_fs_image%,customer_backup_fs=%customer_backup_fs_image%,flasher_bin=%flasher_image%,ext_flash=%extflash_image%,gnss_boot=%gnss_boot_image%,gnss_firm=%gnss_firm_image%,jacana_fw=%jacana_fw_image%,bt_btbin=%btbin%,bt_btlst=%btlst%"
+			set standard_arelease_iamges="cp=%cp_image%,cp2=%cp2_image%,dsp=%dsp_image%,boot33=%boot_nologo_image%,updater=%updater_image%,rfbin=%rfbin_image%,rd=%rd_image%,customer_app=%customer_app_image%,logo=%logo_image%,preboot_bin=%preboot_image%,boot2_bin=%boot2_image%,customer_fs=%customer_fs_image%,customer_backup_fs=%customer_backup_fs_image%,flasher_bin=%flasher_image%,ext_flash=%extflash_image%,gnss_boot=%gnss_boot_image%,gnss_firm=%gnss_firm_image%,jacana_fw=%jacana_fw_image%,bt_btbin=%btbin%,bt_btlst=%btlst%,app_cert=%app_cert_image%"
 		) else (
-			set standard_arelease_iamges="cp=%cp_image%,cp2=%cp2_image%,dsp=%dsp_image%,boot33=%boot_nologo_image%,updater=%updater_image%,rfbin=%rfbin_image%,rd=%rd_image%,customer_app=%customer_app_image%,logo=%logo_image%,preboot_bin=%preboot_image%,boot2_bin=%boot2_image%,customer_fs=%customer_fs_image%,customer_backup_fs=%customer_backup_fs_image%,flasher_bin=%flasher_image%,ext_flash=%extflash_image%,gnss_boot=%gnss_boot_image%,gnss_firm=%gnss_firm_image%,jacana_fw=%jacana_fw_image%"
+			set standard_arelease_iamges="cp=%cp_image%,cp2=%cp2_image%,dsp=%dsp_image%,boot33=%boot_nologo_image%,updater=%updater_image%,rfbin=%rfbin_image%,rd=%rd_image%,customer_app=%customer_app_image%,logo=%logo_image%,preboot_bin=%preboot_image%,boot2_bin=%boot2_image%,customer_fs=%customer_fs_image%,customer_backup_fs=%customer_backup_fs_image%,flasher_bin=%flasher_image%,ext_flash=%extflash_image%,gnss_boot=%gnss_boot_image%,gnss_firm=%gnss_firm_image%,jacana_fw=%jacana_fw_image%,app_cert=%app_cert_image%"
 		)
 	) else (
 		if "%aboot_image%"=="1602" (
 			 if "%FLASHTYPE%"=="DEFAULT_BT" (
-					set standard_arelease_iamges="cp=%cp_image%,cp2=%cp2_image%,dsp=%dsp_image%,boot33=%boot_nologo_image%,updater=%updater_image%,rfbin=%rfbin_image%,rd=%rd_image%,customer_app=%customer_app_image%,logo=%logo_image%,preboot_bin=%preboot_image%,boot2_bin=%boot2_image%,customer_fs=%customer_fs_image%,customer_backup_fs=%customer_backup_fs_image%,flasher_bin=%flasher_image%,ext_flash=%extflash_image%,gnss_boot=%gnss_boot_image%,gnss_firm=%gnss_firm_image%,jacana_fw=%jacana_fw_image%,btbin=%btbin_image%,btlst=%btlst_image%"
+					set standard_arelease_iamges="cp=%cp_image%,cp2=%cp2_image%,dsp=%dsp_image%,boot33=%boot_nologo_image%,updater=%updater_image%,rfbin=%rfbin_image%,rd=%rd_image%,customer_app=%customer_app_image%,logo=%logo_image%,preboot_bin=%preboot_image%,boot2_bin=%boot2_image%,customer_fs=%customer_fs_image%,customer_backup_fs=%customer_backup_fs_image%,flasher_bin=%flasher_image%,ext_flash=%extflash_image%,gnss_boot=%gnss_boot_image%,gnss_firm=%gnss_firm_image%,jacana_fw=%jacana_fw_image%,btbin=%btbin_image%,btlst=%btlst_image%,app_cert=%app_cert_image%"
 				) else (
-					set standard_arelease_iamges="cp=%cp_image%,cp2=%cp2_image%,dsp=%dsp_image%,boot33=%boot_nologo_image%,updater=%updater_image%,rfbin=%rfbin_image%,rd=%rd_image%,customer_app=%customer_app_image%,logo=%logo_image%,preboot_bin=%preboot_image%,boot2_bin=%boot2_image%,customer_fs=%customer_fs_image%,customer_backup_fs=%customer_backup_fs_image%,flasher_bin=%flasher_image%,ext_flash=%extflash_image%,gnss_boot=%gnss_boot_image%,gnss_firm=%gnss_firm_image%,jacana_fw=%jacana_fw_image%,quectel_resource_tts=%tts_image%"
+					set standard_arelease_iamges="cp=%cp_image%,cp2=%cp2_image%,dsp=%dsp_image%,boot33=%boot_nologo_image%,updater=%updater_image%,rfbin=%rfbin_image%,rd=%rd_image%,customer_app=%customer_app_image%,logo=%logo_image%,preboot_bin=%preboot_image%,boot2_bin=%boot2_image%,customer_fs=%customer_fs_image%,customer_backup_fs=%customer_backup_fs_image%,flasher_bin=%flasher_image%,ext_flash=%extflash_image%,gnss_boot=%gnss_boot_image%,gnss_firm=%gnss_firm_image%,jacana_fw=%jacana_fw_image%,quectel_resource_tts=%tts_image%,app_cert=%app_cert_image%"
 				)
 		)else if "%aboot_image%"=="1605" (
-			set standard_arelease_iamges="cp=%cp_image%,cp2=%cp2_image%,dsp=%dsp_image%,boot33=%boot_nologo_image%,updater=%updater_image%,rfbin=%rfbin_image%,rd=%rd_image%,customer_app=%customer_app_image%,logo=%logo_image%,preboot_bin=%preboot_image%,boot2_bin=%boot2_image%,customer_fs=%customer_fs_image%,customer_backup_fs=%customer_backup_fs_image%,flasher_bin=%flasher_image%,ext_flash=%extflash_image%,gnss_boot=%gnss_boot_image%,gnss_firm=%gnss_firm_image%,jacana_fw=%jacana_fw_image%,quectel_resource_tts=%tts_image%,btbin=%btbin_image%,btlst=%btlst_image%"
+			set standard_arelease_iamges="cp=%cp_image%,cp2=%cp2_image%,dsp=%dsp_image%,boot33=%boot_nologo_image%,updater=%updater_image%,rfbin=%rfbin_image%,rd=%rd_image%,customer_app=%customer_app_image%,logo=%logo_image%,preboot_bin=%preboot_image%,boot2_bin=%boot2_image%,customer_fs=%customer_fs_image%,customer_backup_fs=%customer_backup_fs_image%,flasher_bin=%flasher_image%,ext_flash=%extflash_image%,gnss_boot=%gnss_boot_image%,gnss_firm=%gnss_firm_image%,jacana_fw=%jacana_fw_image%,quectel_resource_tts=%tts_image%,btbin=%btbin_image%,btlst=%btlst_image%,app_cert=%app_cert_image%"
 		) else if "%aboot_image%"=="1607" (
-			set standard_arelease_iamges="cp=%cp_image%,cp2=%cp2_image%,dsp=%dsp_image%,boot33=%boot_nologo_image%,updater=%updater_image%,rfbin=%rfbin_image%,rd=%rd_image%,customer_app=%customer_app_image%,logo=%logo_image%,preboot_bin=%preboot_image%,boot2_bin=%boot2_image%,customer_fs=%customer_fs_image%,customer_backup_fs=%customer_backup_fs_image%,flasher_bin=%flasher_image%,ext_flash=%extflash_image%,gnss_boot=%gnss_boot_image%,gnss_firm=%gnss_firm_image%,jacana_fw=%jacana_fw_image%,quectel_resource_tts=%tts_image%"
+			set standard_arelease_iamges="cp=%cp_image%,cp2=%cp2_image%,dsp=%dsp_image%,boot33=%boot_nologo_image%,updater=%updater_image%,rfbin=%rfbin_image%,rd=%rd_image%,customer_app=%customer_app_image%,logo=%logo_image%,preboot_bin=%preboot_image%,boot2_bin=%boot2_image%,customer_fs=%customer_fs_image%,customer_backup_fs=%customer_backup_fs_image%,flasher_bin=%flasher_image%,ext_flash=%extflash_image%,gnss_boot=%gnss_boot_image%,gnss_firm=%gnss_firm_image%,jacana_fw=%jacana_fw_image%,quectel_resource_tts=%tts_image%,app_cert=%app_cert_image%"
 		)else (		
-			set standard_arelease_iamges="cp=%cp_image%,cp2=%cp2_image%,dsp=%dsp_image%,boot33=%boot_nologo_image%,updater=%updater_image%,rfbin=%rfbin_image%,rd=%rd_image%,customer_app=%customer_app_image%,logo=%logo_image%,preboot_bin=%preboot_image%,boot2_bin=%boot2_image%,customer_fs=%customer_fs_image%,customer_backup_fs=%customer_backup_fs_image%,flasher_bin=%flasher_image%,ext_flash=%extflash_image%,gnss_boot=%gnss_boot_image%,gnss_firm=%gnss_firm_image%,jacana_fw=%jacana_fw_image%,quectel_resource_tts=%tts_image%"
+			set standard_arelease_iamges="cp=%cp_image%,cp2=%cp2_image%,dsp=%dsp_image%,boot33=%boot_nologo_image%,updater=%updater_image%,rfbin=%rfbin_image%,rd=%rd_image%,customer_app=%customer_app_image%,logo=%logo_image%,preboot_bin=%preboot_image%,boot2_bin=%boot2_image%,customer_fs=%customer_fs_image%,customer_backup_fs=%customer_backup_fs_image%,flasher_bin=%flasher_image%,ext_flash=%extflash_image%,gnss_boot=%gnss_boot_image%,gnss_firm=%gnss_firm_image%,jacana_fw=%jacana_fw_image%,quectel_resource_tts=%tts_image%,app_cert=%app_cert_image%"
 		)
 	)
 

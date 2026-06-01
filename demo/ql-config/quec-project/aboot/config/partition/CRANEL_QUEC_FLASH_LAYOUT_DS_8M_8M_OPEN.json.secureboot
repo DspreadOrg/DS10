@@ -21,7 +21,7 @@
         {
           "name": "bootloader",
           "format": "ubi",
-          "size": "88KiB"
+          "size": "92KiB"
         },
         {
           "name": "system",
@@ -73,8 +73,8 @@
         {
           "name": "customer_app",
           "format": "raw",
-      "size": "1024KiB"
-        },
+      "size": "1536KiB"
+	  },
     {
       "name": "ymzn_param",
       "format": "raw",

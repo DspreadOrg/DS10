@@ -4,6 +4,11 @@
 
 The DS10 is an embedded IoT project based on Quectel wireless communication modules, primarily used for intelligent voice interaction, network connectivity, and data transmission. The project is built on the ThreadX real-time operating system and integrates dual-mode communication capabilities for 4G LTE and WiFi, featuring rich audio processing functions.
 
+## Default support and new feature development
+
+The default firmware installed on the device at the factory supports connecting to the tms and emqx test servers of dspread.You can integrate with your own server by pushing server parameters through TMS. Please refer to the 'how to create ota package. doc' document for specific methods.
+If the default firmware cannot meet your needs, you can download a demo project. Establish the compilation environment based on 'project build. doc'.
+
 ## Project Architecture
 
 ### Overall Structure
@@ -22,6 +27,7 @@ DS10/
 │   ├── API.xlsx          # API interface table
 │   ├── DS10 API.docx     # API detailed documentation
 │   ├── How to use wifi.docx # WiFi usage instructions
+│   ├── How to create ota package.docx # TMS usage instructions
 │   └── project build.docx # Project build documentation
 └── tool/                 # Tools
 ```
@@ -101,11 +107,10 @@ DS10/
    
    ```batch
    # Select module type 
-           1:DS10-S-CN EG800AKCN_91LC			
-           2:DS10-D-EU EC600MEU_LA				    
-           3:DS10-S-EU EG800AKEU_11LC			
-           4:DS10-D-CN EC600MCN_LE			    	
-   
+           1:DS10-S-CN EG800AKCN_91LC            
+           2:DS10-D-EU EC600MEU_LA                    
+           3:DS10-S-EU EG800AKEU_11LC            
+           4:DS10-D-CN EC600MCN_LE                    
    ```
 
 2. **Build Application**:

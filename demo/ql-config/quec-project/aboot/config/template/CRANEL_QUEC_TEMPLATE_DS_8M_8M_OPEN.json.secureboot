@@ -123,7 +123,7 @@
     {
       "command": "erase",
       "partition": "ymzn_param",
-		"productionOnly": true,
+      "productionOnly": true,
       "group": "15"
     },
     {
@@ -156,8 +156,7 @@
       "command": "fuse",
       "name": "fuse",
       "type": "image",
-      "productionOnly": true,
-      "group": "5"
+      "group": "2"
     },
 	{
       "command": "flash",
@@ -214,11 +213,11 @@
     {
       "name": "rfbin",
       "image": "rf.bin",
-      "io": "in",
-      "format": "raw"
-    },
-    {
-      "name": "updater_bin",
+        "io": "in",
+        "format": "raw"
+      },
+      {
+        "name": "updater",
       "image": "updater.bin",
       "io": "in",
       "format": "raw"
@@ -331,22 +330,6 @@
       }
     },
     {
-      "name": "updater",
-      "image": "updater.img",
-      "io": "out",
-      "format": "fip",
-      "fip": {
-        "images": [
-          {
-            "id": "UPDATER_IMAGE_ID",
-            "image": "updater_bin"
-          }
-        ],
-        "callBoot2": false,
-        "certOnly": false
-      }
-    },
-    {
       "name": "fwcerts",
       "image": "fwcerts.bin",
       "io": "out",
@@ -364,6 +347,10 @@
           {
             "id": "USER1_IMAGE_ID",
             "image": "app_cert"
+          },
+		  {
+            "id": "UPDATER_IMAGE_ID",
+            "image": "updater"
           }
         ],
         "callBoot2": false,

@@ -65,11 +65,16 @@
           "format": "raw",
           "size": "-1"
         },
+    {
+      "name": "app_cert",
+      "format": "raw",
+      "size": "4KiB"
+    },
         {
           "name": "customer_app",
           "format": "raw",
-      "size": "1024KiB"
-        },
+      "size": "1536KiB"
+	  },
     {
       "name": "ymzn_param",
       "format": "raw",
