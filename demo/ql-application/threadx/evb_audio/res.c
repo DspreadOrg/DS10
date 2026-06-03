@@ -9,6 +9,7 @@
 #include "fixaudio.h"
 #include "public_api_interface.h"
 #include "systemparam.h"
+#include "gpio.h"
 
 #if CFG_DBG
 #define LOG_DBG(...)            //do{printf("[DBG PCM]: "); printf(__VA_ARGS__);}while(0)
@@ -183,7 +184,10 @@ int ResTabChk(void)
 		if (auds[ii].filePinyinName)
 		{
 			total++;
-			snprintf(path,sizeof(path),"%s%s",VOICE_PATH_PREFIX,auds[ii].filePinyinName);
+			if(get_device_config()->id == ID_DS10M)
+				snprintf(path,sizeof(path),"%s%s",VOICE_PATH_PREFIX_DS10M,auds[ii].filePinyinName);
+			else
+				snprintf(path,sizeof(path),"%s%s",VOICE_PATH_PREFIX_DS10AK,auds[ii].filePinyinName);	
 			if ( ql_access(path,0) != 0 )
 			{
 				// fallback to U:/
@@ -227,7 +231,10 @@ int AllVoiceTest(void)
 		if (auds[ii].filePinyinName)
 		{
 			memset(path,0,sizeof(path));
-			snprintf(path,sizeof(path),"%s%s",VOICE_PATH_PREFIX,auds[ii].filePinyinName);
+			if(get_device_config()->id == ID_DS10M)
+				snprintf(path,sizeof(path),"%s%s",VOICE_PATH_PREFIX_DS10M,auds[ii].filePinyinName);
+			else
+				snprintf(path,sizeof(path),"%s%s",VOICE_PATH_PREFIX_DS10AK,auds[ii].filePinyinName);
 			if ( ql_access(path,0) == 0 )
 			{
 				LOG_INFO("===============Play Aduio=============================\n");

@@ -390,6 +390,8 @@ void disp_factorytest_onoff(int on);
 
 void disp_set_img();
 
+void lcd_ctrl_task_init();
+
 #ifdef __cplusplus
 }
 #endif

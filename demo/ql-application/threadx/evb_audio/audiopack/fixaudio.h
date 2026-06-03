@@ -15,7 +15,8 @@ typedef struct {
 	const char *filePinyinName;
 }AudioResInfo;
 
-#define VOICE_PATH_PREFIX       "B:/"
+#define VOICE_PATH_PREFIX_DS10M       "B:/"
+#define VOICE_PATH_PREFIX_DS10AK       "U:/"
 
 extern const AudioResInfo *GetRecInfo(int Idx);
 

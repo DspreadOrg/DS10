@@ -34,7 +34,7 @@ extern StructAudioParam AudioParam;
 #define CUST_PARAM_FILE_PATH_DS10M	"B:/CertParam/"   //tms will write cust param to this path
 #define CUST_PARAM_FILE_PATH_DS10AK	"U:/CertParam/" 
 
-#define SOFTVER "V1.0.5"
+#define SOFTVER "V1.0.6"
 
 #define CFG_DBG      1
 

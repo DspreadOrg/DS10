@@ -1011,6 +1011,9 @@ void start_Mqtt_task(void)
 			usb_log_printf("thread create error\n");
 		}
 	}
+#if DEV_F240320_SUPPORT || DEV_F480320_SUPPORT
+	lcd_ctrl_task_init();
+#endif	
 }
 #endif
 

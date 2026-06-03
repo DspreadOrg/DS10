@@ -747,23 +747,46 @@ int tts_play_local_file(const char* fpath)
 	char path[64] = {0};
 	int delay_times = AUDIO_WAIT_DELAY_TIMES/50;
 
-//	LOG_INFO("%s_%d ===============\n", __func__, __LINE__);
-	if( 0 == memcmp(fpath,AUDIO_RESOURCE_ROOT_PATH,strlen(AUDIO_RESOURCE_ROOT_PATH)) )
+	//	LOG_INFO("%s_%d ===============\n", __func__, __LINE__);
+	if(get_device_config()->id == ID_DS10M)
 	{
-		// full path
-		snprintf(path,sizeof(path),"%s",fpath);
+		if( 0 == memcmp(fpath,AUDIO_RESOURCE_ROOT_PATH_DS10M,strlen(AUDIO_RESOURCE_ROOT_PATH_DS10M)) )
+		{
+			// full path
+			snprintf(path,sizeof(path),"%s",fpath);
+		}
+		else
+		{
+			snprintf(path,sizeof(path),"%s%s",VOICE_PATH_PREFIX_DS10M,fpath);
+			ret = ql_access(path,0);
+			if ( ret != 0 )
+			{
+				// fallback to U:/
+				memset(path,0,sizeof(path));
+				snprintf(path,sizeof(path),"%s%s",AUDIO_RESOURCE_ROOT_PATH_DS10M,fpath);
+			}
+		}
 	}
 	else
 	{
-		snprintf(path,sizeof(path),"%s%s",VOICE_PATH_PREFIX,fpath);
-		ret = ql_access(path,0);
-		if ( ret != 0 )
+		if( 0 == memcmp(fpath,AUDIO_RESOURCE_ROOT_PATH,strlen(AUDIO_RESOURCE_ROOT_PATH)) )
 		{
-			// fallback to U:/
-			memset(path,0,sizeof(path));
-			snprintf(path,sizeof(path),"%s%s",AUDIO_RESOURCE_ROOT_PATH,fpath);
+			// full path
+			snprintf(path,sizeof(path),"%s",fpath);
+		}
+		else
+		{
+			snprintf(path,sizeof(path),"%s%s",VOICE_PATH_PREFIX_DS10AK,fpath);
+			ret = ql_access(path,0);
+			if ( ret != 0 )
+			{
+				// fallback to U:/
+				memset(path,0,sizeof(path));
+				snprintf(path,sizeof(path),"%s%s",AUDIO_RESOURCE_ROOT_PATH,fpath);
+			}
 		}
 	}
+
 
 	ret = ql_access(path,0);
 	if( ret != 0 )

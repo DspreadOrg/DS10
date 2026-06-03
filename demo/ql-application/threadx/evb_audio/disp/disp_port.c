@@ -1387,6 +1387,9 @@ void disp_onoff_request(uint8_t on,uint32_t holdon_ms)
         }
     }
 #endif
+#if DEV_F240320_SUPPORT || DEV_F480320_SUPPORT
+    lcd_switch(on,holdon_ms);
+#endif
 }
 
 // disp enable sleep
@@ -1591,3 +1594,67 @@ void disp_set_img()
 
 }
 
+// run lcd task
+
+static ql_task_t lcd_task_ctrl = NULL;
+static int lcd_status = 0;
+static int lcd_hold_on = 30*1000;
+void lcd_switch(uint8_t onoff,uint32_t hold_on)
+{
+    if(TermInfo.Charge )
+    {
+        return;
+    }
+    if(lcd_status == 0)
+        lcd_f480320_bl_on(1);
+    if( onoff )
+    {
+        lcd_status = 1;
+        lcd_hold_on = hold_on;
+    }
+    else
+    {
+        lcd_f480320_bl_on(0);
+        lcd_status = 0;
+    }
+}
+#if DEV_F240320_SUPPORT || DEV_F480320_SUPPORT
+static void lcd_ctrl_task(void *pvParameters)
+{
+    LOG_INFO("%s: start\n",__func__);
+    uint32_t wait_ms = -1;
+    while ( 1 )
+    {
+        if(lcd_status)
+        {
+            ql_rtos_task_sleep_ms(lcd_hold_on);
+            lcd_f480320_bl_on(0);
+            lcd_status = 0;
+        }
+        else
+        {
+             ql_rtos_task_sleep_ms(1000);
+        }
+   
+    }
+}
+void lcd_ctrl_task_init(void)
+{
+    if( lcd_task_ctrl )
+    {
+        LOG_INFO("%s: task is init\n",__func__);
+        return;
+    }
+
+    if (ql_rtos_task_create(&lcd_task_ctrl,
+                            5 * 1024,
+                            100,
+                            "animate task",
+                            lcd_ctrl_task,
+                            NULL) != 0)
+    {
+        LOG_INFO( "%s: thread create error\n", __func__ );
+    }
+}
+
+#endif

@@ -24,6 +24,7 @@
 #include "tts_yt_task.h"
 #include "res.h"
 #include "voice_wav_mix.h"
+#include "gpio.h"
 
 #define LOG_DBG(...)            //do{printf("[DBG WMIX]: "); printf(__VA_ARGS__);}while(0)
 #define LOG_INFO(...)           do{printf("[INFO WMIX]: "); printf(__VA_ARGS__);}while(0)
@@ -49,7 +50,9 @@ typedef struct
 #define WAV_PLAY_PLAYING        2
 #define WAV_PLAY_FINISH         3
 
+#define WAV_FILE_PATH_PREFIX_DS10M    "B:/"
 #define WAV_FILE_PATH_PREFIX    "U:/"
+
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 #define LITTLE_TO_U32(P)    ((P[3] << 24) + (P[2] << 16) + (P[1] << 8) + P[0])
@@ -331,7 +334,13 @@ int wav_mix_list(int size ,short const * group)
         return -1;
     }
     memset(filename,0,sizeof(filename));
-    snprintf(filename,sizeof(filename),"%s%s",WAV_FILE_PATH_PREFIX,GetRecInfo(group[index])->filePinyinName);
+    if(get_device_config()->id == ID_DS10M)
+    {
+        snprintf(filename,sizeof(filename),"%s%s",WAV_FILE_PATH_PREFIX_DS10M,GetRecInfo(group[index])->filePinyinName);
+    }
+    else{
+        snprintf(filename,sizeof(filename),"%s%s",WAV_FILE_PATH_PREFIX,GetRecInfo(group[index])->filePinyinName);
+    }
 
      rbuff = malloc(RBUFF_SIZE);
     if( !rbuff )
@@ -396,7 +405,10 @@ int wav_mix_list(int size ,short const * group)
         goto wav_mix_list_ex_end;
     }
     memset(filename,0,sizeof(filename));
-    snprintf(filename,sizeof(filename),"%s%s",WAV_FILE_PATH_PREFIX,GetRecInfo(group[index])->filePinyinName);
+    if(get_device_config()->id == ID_DS10M)
+     snprintf(filename,sizeof(filename),"%s%s",WAV_FILE_PATH_PREFIX_DS10M,GetRecInfo(group[index])->filePinyinName);
+    else
+        snprintf(filename,sizeof(filename),"%s%s",WAV_FILE_PATH_PREFIX,GetRecInfo(group[index])->filePinyinName);
 
     ret = get_wav_info(filename, &mixc2.info);
     if (ret)
@@ -447,7 +459,10 @@ int wav_mix_list(int size ,short const * group)
             if( index<size )
             {
                 memset(filename,0,sizeof(filename));
-                snprintf(filename,sizeof(filename),"%s%s",WAV_FILE_PATH_PREFIX,GetRecInfo(group[index])->filePinyinName);
+                if(get_device_config()->id == ID_DS10M)
+                    snprintf(filename,sizeof(filename),"%s%s",WAV_FILE_PATH_PREFIX_DS10M,GetRecInfo(group[index])->filePinyinName);
+                else
+                    snprintf(filename,sizeof(filename),"%s%s",WAV_FILE_PATH_PREFIX,GetRecInfo(group[index])->filePinyinName);
 
                 timer_info_interval = ql_rtos_get_systicks_to_ms();
                 ret = get_wav_info(filename, &mixc2.info);

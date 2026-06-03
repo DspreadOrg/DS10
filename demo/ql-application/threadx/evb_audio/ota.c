@@ -289,6 +289,11 @@ int larktms_parse_heartbeat(larktms_task_params *params,cJSON *jsontasks)
         }
         params->taskType = jsonchild->valueint;
 
+        if(params->taskType != 1 && params->taskType != 2) // only support upgrade firmware and resource task
+        {
+            break;
+        }
+
         jsonchild = cJSON_GetObjectItem(jsonitem, "subTaskType");
         if (jsonchild == 0)
         {
@@ -1404,6 +1409,13 @@ void larktmsUpdateArrived(MessageData* data)
         }
         g_task_params.taskStatus = PROGRESS_GET_TASK_ID;
         larktms_taskparam_save(&g_task_params);
+
+        if(g_task_params.taskType != 1 && g_task_params.taskType != 2) // only support upgrade firmware and resource task
+        {
+            memset(&g_task_params,0,sizeof(larktms_task_params));
+            larktms_taskparam_save(&g_task_params);
+            break;
+        }
         if (ql_rtos_task_create(&g_Larktms_download_thread,
                             LARKTMS_DOWNLOAD_THREAD_STACK_SIZE,
                             100,

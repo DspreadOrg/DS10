@@ -57,10 +57,10 @@ echo.
 echo          		module selection
 echo         ===========================
 echo.
-echo         1:DS10-S-CN
-echo         2:DS10-D-EU
-echo         3:DS10-S-EU
-echo         4:DS10-D-CN			
+echo         1:DS10-S-CN EG800AKCN_91LC			(4+4)
+echo         2:DS10-D-EU EC600MEU_LA				(8+8)    
+echo         3:DS10-S-EU EG800AKEU_11LC			(4+4)
+echo         4:DS10-D-CN EC600MCN_LE			    (8+8)			
 echo         0:clean device type configuration and return main menu
 echo.
 :check_select_module
@@ -70,19 +70,19 @@ IF NOT "%choice%"=="" SET choice=%choice:~0,1%
 
 if /i "%choice%"=="1" (
 	set module=EG800AKCN_91LC
-	set module_ver=4GW_V071501_100_R07A15
+	set module_ver=4GW_V071502_100_R07A15
 )
 if /i "%choice%"=="2" (
 	set module=EC600MEU_LA
-	set module_ver=4GW_V071501_100_R07A15
+	set module_ver=4GW_V071502_100_R07A15
 )
 if /i "%choice%"=="3" (
 	set module=EG800AKEU_11LC
-	set module_ver=4GW_V071501_100_R07A15
+	set module_ver=4GW_V071502_100_R07A15
 )
 if /i "%choice%"=="4" (
 	set module=EC600MCN_LE
-	set module_ver=4GW_V071501_100_R07A15
+	set module_ver=4GW_V071502_100_R07A15
 )
 if /i "%choice%"=="0" (
 	set module=UNKNOW

@@ -1123,8 +1123,7 @@ void list_dir(const char *path)
 void App_task(void *pvParameters)
 {
 	start();
-	{	
-		usb_log_printf("\r\nDevice id:%d\r\n",get_device_config()->id);
+	{
 		uint32_t disk_empty_size = ql_fs_free_size(U_DISK_SYM);
 	    int disk_total_size = ql_fs_size(U_DISK_SYM);
 	    usb_log_printf("%s_%d :U %d\r\n", __func__, __LINE__, disk_empty_size);
@@ -1135,7 +1134,7 @@ void App_task(void *pvParameters)
 	    usb_log_printf("%s_%d :B  %d\r\n", __func__, __LINE__, disk_empty_size);
 	    usb_log_printf("%s_%d :B  %d\r\n", __func__, __LINE__, disk_total_size);
 		usb_log_printf("\r\n**********");
-		list_dir(VOICE_PATH_PREFIX);
+		list_dir(VOICE_PATH_PREFIX_DS10M);
 	}
 	const dev_config_t *pdevconf = get_device_config();
 	usb_log_printf("\n");
@@ -1206,11 +1205,6 @@ void AppFsInit(void)
 		set_cust_param_path(CUST_PARAM_FILE_PATH_DS10M);
 	}
 	else if(get_device_config()->id==ID_DS10AK)
-	{
-		ql_mkdir(CUST_PARAM_FILE_PATH_DS10AK, 0x777);	
-		set_cust_param_path(CUST_PARAM_FILE_PATH_DS10AK);
-	}
-	else
 	{
 		ql_mkdir(CUST_PARAM_FILE_PATH_DS10AK, 0x777);	
 		set_cust_param_path(CUST_PARAM_FILE_PATH_DS10AK);

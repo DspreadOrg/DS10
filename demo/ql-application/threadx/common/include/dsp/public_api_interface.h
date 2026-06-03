@@ -3,6 +3,7 @@
 
 #define AUDIO_RESOURCE_DISK				'C'
 #define AUDIO_RESOURCE_ROOT_PATH		"U:/" // "C:/"
+#define AUDIO_RESOURCE_ROOT_PATH_DS10M		"B:/" // "C:/"
 
 int sntp_get_net_time(char const * host);
 uint32_t read_rtc_time(void);
