@@ -20,9 +20,11 @@ The DS10 is an embedded IoT project based on Quectel wireless communication modu
 
 The device supports two methods: quick access and custom firmware.
 
+If you just want to experience the broadcasting effect of the device, refer to "**How to demonstrate device broadcasting.docx**" or contact dspread for guidance.
+
 - **Quick Access**
   
-  The default firmware installed on the device  supports connecting to the tms and emqx test servers of dspread.You only need to update your MQTT server parameters to the device through the TMS system to establish a connection with the new MQTT server. Please refer to the '**how to create ota package. docx**' document for specific methods.
+  The default firmware installed on the device  supports connecting to the tms and emqx test servers of dspread.You only need to update your MQTT server parameters to the device through the TMS system to establish a connection with the new MQTT server. Please refer to the '**How to use default firmware. docx**' document for specific methods.
   
   1.The default firmware subscribe topic is "**user/message/DS10DCN000001**". "DS10DCN000001" is the device serial number.
   
