@@ -68,7 +68,7 @@
         {
           "name": "customer_app",
           "format": "raw",
-      "size": "1024KiB"
+      "size": "1536Kib"
         },
     {
       "name": "ymzn_param",
