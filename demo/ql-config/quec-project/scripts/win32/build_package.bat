@@ -6,22 +6,11 @@ set OPTION=%2
 
 set CROSS_DIR=%cross_tool%
 
-setlocal enabledelayedexpansion
+set YEAR=%date:~3,4%
+set MONTH=%date:~8,2%
+set DAY=%date:~11,2%
 
-for /f "delims=" %%a in ('date /t') do set raw_date=%%a
-set BUILD_TIME=
-
-:loop
-if not "!raw_date!"=="" (
-    set char=!raw_date:~0,1!
-    echo 0123456789|findstr "!char!" >nul
-    if !errorlevel! equ 0 (
-        set BUILD_TIME=!BUILD_TIME!!char!
-    )
-    set raw_date=!raw_date:~1!
-    goto loop
-)
-
+set BUILD_TIME=%YEAR%%MONTH%%DAY%
 
 if exist %TOP_DIR%\devtype.conf (
 	set /p devtype_name=<%TOP_DIR%\devtype.conf
