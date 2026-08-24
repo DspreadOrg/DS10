@@ -350,7 +350,7 @@ int FuncWifiRetryRepeat(void)
 	}
 	
 	TermInfo.RepTim =ql_rtos_get_systicks_to_s()+60;
-	if (Wifi_GetHostByName("www.aliyun.com", &address) != 0) 
+	if (Wifi_GetHostByName("www.google.com", &address) != 0) 
 	{
 		index++;
 		LOG_INFO("invalid ping host.\n");

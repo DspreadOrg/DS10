@@ -12,6 +12,10 @@ Extract the owtoolchain. zip file from the tool And put it on the C drive (compi
 
 <img src="./images/projectbuild2.png" title="" alt="" width="527">
 
+## About the project path
+
+Please note that the project save path cannot contain spaces. Otherwise, the firmware won't be able to be downloaded to the device after successful compilation.
+
 ## Set Device Type
 
 - Open the project directory, enter the demo directory, double-click project_build.bat
